@@ -1,7 +1,7 @@
 ---
 name: HW 10
 tools: [Python, HTML, vega-lite]
-image: assets/pngs/ufos1.png
+image: assets/pngs/ufo2.png
 description: Assignment for hw10
 custom_js:
   - vega.min
