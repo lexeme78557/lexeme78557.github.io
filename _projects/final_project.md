@@ -41,6 +41,8 @@ Below is where we can put some links to both the data and the analysis code as b
 
 <div class="left">
 {% include elements/button.html link="https://raw.githubusercontent.com/nychealth/coronavirus-data/master/trends/data-by-day.csv" text="NYC Data" %}
+{% include elements/button.html link="https://raw.githubusercontent.com/nychealth/coronavirus-data/master/trends/data-by-day.csv" text="NYC Data" %}
+{% include elements/button.html link="https://raw.githubusercontent.com/nychealth/coronavirus-data/master/trends/data-by-day.csv" text="NYC Data" %}
 </div>
 
 <div class="right">
