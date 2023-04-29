@@ -43,3 +43,7 @@ Below is where we can put some links to both the data and the analysis code as b
 {% include elements/button.html link="https://raw.githubusercontent.com/nychealth/coronavirus-data/master/trends/data-by-day.csv" text="NYC Data" %}
 </div>
 
+<div class="right">
+{% include elements/button.html link="https://github.com/drinkingtea2223/drinkingtea2223.github.io/blob/main/python_notebooks/p3.ipynb" text="The Analysis" %}
+</div>
+
