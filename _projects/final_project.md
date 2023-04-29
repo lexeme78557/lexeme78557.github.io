@@ -28,6 +28,10 @@ Interested in how other cities compared, here is a similar graph but for the cit
 
 <vegachart schema-url="{{ site.baseurl }}/assets/json/p2_chart5.json" style="width: 100%"></vegachart>
 
+Same as we saw in Chicago, for Los Angeles the peaks also occurred in December 2021 along with January 2022. It seems that these are the two most severe months across America. 
+
+<vegachart schema-url="{{ site.baseurl }}/assets/json/p2_chart6.json" style="width: 100%"></vegachart>
+
 
 
 Below is where we can put some links to both the data and the analysis code as buttons:
