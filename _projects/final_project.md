@@ -22,20 +22,22 @@ The recent Corona Virus Epidemic has made quite a mark in terms of interupting d
 Here is a depiction of case and hospitalization counts for NYC within the last few years. The darker the color indicates the more recent the listing. We can see that as of recent, the numbers are quite low which is a good sign of things to come. The last signs of obvious red come from January 2022 which is already over a year ago. The graph is quite large in terms of scaling and we can pick a month to look at yearly trends more easily. After panning around, double click to bring the graph back into focus. Looking at July or September can be quite scary individually but thankfully the axises scales are quite small and are tiny in terms of the bigger picture. Hovering over datapoints will also show some more detailed information of the counts recorded.
 
 
-Here is a plot showing the amount of recorded cases by month in New York City. We can see that December 2021 was by far the most severe month of the last three years. I've chosen a slightly differing color palette but still red as I feel it is the only color suitable for shading in this topic of pandemic.
+Below is a plot showing the amount of recorded cases by month in New York City. We can see that December 2021 was by far the most severe month of the last three years. I've chosen a slightly differing color palette but still red as I feel it is the only color suitable for shading in this topic of pandemic. Using a heatmap is good for this type of task as we can clearly distinguish between the months and years. The scatterplot above is better suited for selecting months and observing those trends separately.
 
 <vegachart schema-url="{{ site.baseurl }}/assets/json/p2_chart2.json" style="width: 100%"></vegachart>
 
 
 
-Interested in how other cities compared, here is a similar graph but for the city of Chicago. Though not as drastic as in NYC, we also can see that December 2021 along with January 2022 were the two most severe months in terms of number of cases. 
+Interested in how other cities compared, here is a similar graph I made but for the city of Chicago. Though not as drastic as in NYC (in terms of the number of cases), we also can see that December 2021 along with January 2022 were the two most severe months in terms of number of cases. 
 
 <vegachart schema-url="{{ site.baseurl }}/assets/json/p2_chart5.json" style="width: 100%"></vegachart>
 
-Same as we saw in Chicago, for Los Angeles the peaks also occurred in December 2021 along with January 2022. It seems that these are the two most severe months across America. 
+Same as we saw in Chicago, the Los Angeles peaks also occurred in December 2021 along with January 2022. It seems that these are the two most severe months for all three major cities that I've looked at. 
+
 
 <vegachart schema-url="{{ site.baseurl }}/assets/json/p2_chart6.json" style="width: 100%"></vegachart>
 
+Although numbers may not be precise due to individuals staying home instead of begining marked at the hospital or clinic, these visualizations still provide a good estimation of what the journey along this pandemic looked like. 
 For further investigations I will take a dive into reports for other large cities. 
 
 
