@@ -15,7 +15,11 @@ Covid Reports for Large Cities in America --- Dylan Han
 ## Some Quick Visualizations
 
 The recent Corona Virus Epidemic has made quite a mark in terms of interupting daily goings. Curious as to how things were going in other cities in America, I decided to take a look and make some visualizations for some of the larger cities where spreading is likely to be more common. 
+
+
 <vegachart schema-url="{{ site.baseurl }}/assets/json/p2_chart3.json" style="width: 100%"></vegachart>
+
+Here is a depiction of case and hospitalization counts for NYC within the last few years. The darker the color indicates the more recent the listing. We can see that as of recent, the numbers are quite low which is a good sign of things to come. The last signs of obvious red come from January 2022 which is already over a year ago. The graph is quite large in terms of scaling and we can pick a month to look at yearly trends more easily. Looking at July or September is quite scary individually but thankfully the axises scales are quite small and are miniscule in the bigger picture. Hovering over datapoints will show some more detailed information of the counts recorded.
 
 
 Here is a plot showing the amount of recorded cases by month in New York City. We can see that December 2021 was by far the most severe month of the last three years. 
@@ -40,9 +44,9 @@ Below is where we can put some links to both the data and the analysis code as b
 <!-- these are written in a combo of html and liquid --> 
 
 <div class="left">
-{% include elements/button.html link="https://raw.githubusercontent.com/nychealth/coronavirus-data/master/trends/data-by-day.csv" text="NYC Data" %}
-{% include elements/button.html link="https://raw.githubusercontent.com/nychealth/coronavirus-data/master/trends/data-by-day.csv" text="NYC Data" %}
-{% include elements/button.html link="https://raw.githubusercontent.com/nychealth/coronavirus-data/master/trends/data-by-day.csv" text="NYC Data" %}
+{% include elements/button.html link="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/datasets/nyc_data.csv" text="NYC Data" %}
+{% include elements/button.html link="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/datasets/chicago_data.csv" text="Chicago Data" %}
+{% include elements/button.html link="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/datasets/la_data.csv" text="LA Data" %}
 </div>
 
 <div class="right">
