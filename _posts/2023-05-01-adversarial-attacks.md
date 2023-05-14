@@ -1,6 +1,6 @@
 ---
 title: Adversarial Attacks
-tags: [White-Box, Deep-Learning]
+tags: [Adversarial-Attacks, Deep-Learning]
 style: fill
 color: secondary
 description: Some introductory analysis into basic white box methods.
@@ -23,20 +23,21 @@ FGSM stand for Fast Gradient Sign Method. First introduced as a concept in this 
 ![fgsm_eq](https://cdn-5f733ed3c1ac190fbc56ef88.closte.com/wp-content/uploads/2018/05/fgsm.png)
 This is the mathematical formulation. The reason FGSM works is that we are slowly shifting the image so that the loss towards the correct label grows so much so that our model will relabel our image something else. In the example above, we are moving away from the true panda class and shifting instead to some other incorrect one. The algorithm does not care what the other one is as long as it is not panda.
 
-Here are some examples of misclassifications attacking a pretrained resnet18 model using images from the ImageNette dataset.
+Here are some examples of misclassifications attacking a pretrained [resnet50] (https://pytorch.org/vision/main/models/generated/torchvision.models.resnet50.html) model using images from the [ImageNette](https://github.com/fastai/imagenette) dataset.
 ![fgsm_images](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/fgsm-resnet.png) 
 
 
 
 ## Algorithm 2 --- i-FGSM
 
-i-FGSM, also known as Basic Iterative Method (BIM), is an extension of FGSM as its title would suggest. The method is iterative as it performs FGSM multiple times 
+i-FGSM, iterative FGSM or also known as Basic Iterative Method (BIM), is an extension of FGSM as its title would suggest. The method is iterative as it performs FGSM multiple times 
 This is the equation used as mentioned in the 2017 paper  
 ![ifgsm_eq](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/87ea49a63eb80cb3d8ee313b955b7f0669d1ced0/assets/pngs/ifgsm_eq.png)
 
-The number of iterations that we perform is not static. Instead we apply a heuristic min(ε + 4, 1.25)
+The number of iterations that we perform is not static. Instead we apply a heuristic min(ε + 4, 1.25) as the 2017 paper suggests. The point of using this heuristic is to limit the computational costs while still aiming to reach the best possible results. Due to this being an iterative method, we must compute a step of gradient descent every iteration which is why this method is much slower to run than FGSM. There are clear benefits however as will be reviewed in depth later down in the post. But from a cursory glance, an iterative method will allow for 
 
 
+Similarly, here are some misclassified images from ImageNette
 ![ifgsm_images](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/ifgsm-resnet.png)
 
 ## Algorithm 3 --- L.L.Class
@@ -51,7 +52,7 @@ Here I'll be using a simplified approach from the one introduced in the paper wh
 ![llc_eq](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/llc_eq.png)
 
 
-Image results
+Similarly, here are some misclassified images from ImageNette
 ![llc_images](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/llc-resnet.png)
 
 ## Conclusions to Drawn
@@ -60,6 +61,9 @@ Here is a graph showing the accuracies of our model on the perturbed images.
 ![acc-vs-eps-graph](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/adversarial-attacks-acc-vs-eps.png)
 
 Obviously increasing the epsilon values helps to create images that are "more wrong". But as epsilon increases too much, the images become noticeably more granular and less like the original. Too many pixels changed and shifted 
+
+
+Summarizing some ideas from the two papers linked above, it is clear that there are still ways to improve upon modern neural networks. "The existence of adversarial examples suggests that being able to explain the training data or even being able to correctly label the test data does not imply that our models truly understand the tasks we have asked them to perform." [2014](https://arxiv.org/pdf/1412.6572.pdf) The prevalently used gradient-based optimization methods allows for confident fitting of training set examples but the 
 
 
 ## Some Final Thoughts
