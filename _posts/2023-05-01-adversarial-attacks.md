@@ -23,7 +23,8 @@ FGSM stand for Fast Gradient Sign Method. First introduced as a concept in this 
 ![fgsm_eq](https://cdn-5f733ed3c1ac190fbc56ef88.closte.com/wp-content/uploads/2018/05/fgsm.png)
 This is the mathematical formulation. The reason FGSM works is that we are slowly shifting the image so that the loss towards the correct label grows so much so that our model will relabel our image something else. In the example above, we are moving away from the true panda class and shifting instead to some other incorrect one. The algorithm does not care what the other one is as long as it is not panda.
 
-
+Here are some examples of misclassifications attacking a pretrained resnet18 model using images from the ImageNette dataset.
+![fgsm_images](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/fgsm-resnet.png) 
 
 
 
@@ -36,14 +37,29 @@ This is the equation used as mentioned in the 2017 paper
 The number of iterations that we perform is not static. Instead we apply a heuristic min(ε + 4, 1.25)
 
 
+![ifgsm_images](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/ifgsm-resnet.png)
+
 ## Algorithm 3 --- L.L.Class
 
 LLC, least-likely class, is introduced in the 2017 as iterative least-likely class method with equation
 
-As the name would suggest, the goal of this method is to shift our original image towards an unlikely target class. The idea behind this method is to allow for classifications of "meaningful interest" as for larger models trained on larger datasets, we do not really want one type of cat to be misclassified as another breed of cat. The aim is to allow for classifications that are clearly outrageous 
+As the name would suggest, the goal of this method is to shift our original image towards an unlikely target class. The idea behind this method is to allow for classifications of "meaningful interest" as for larger models trained on larger datasets, we do not really want one type of cat to be misclassified as another breed of cat. The aim is to allow for classifications that are clearly outrageous. The equation 
+![illc_eq](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/illc_eq.png)
 
+
+Here I'll be using a simplified approach from the one introduced in the paper which consists only of one iteration
+![llc_eq](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/llc_eq.png)
+
+
+Image results
+![llc_images](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/llc-resnet.png)
 
 ## Conclusions to Drawn
+Here is a graph showing the accuracies of our model on the perturbed images. 
+
+![acc-vs-eps-graph](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/adversarial-attacks-acc-vs-eps.png)
+
+Obviously increasing the epsilon values helps to create images that are "more wrong". But as epsilon increases too much, the images become noticeably more granular and less like the original. Too many pixels changed and shifted 
 
 
 ## Some Final Thoughts
