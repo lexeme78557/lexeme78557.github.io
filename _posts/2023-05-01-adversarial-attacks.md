@@ -27,7 +27,8 @@ This is the mathematical formulation. The reason FGSM works is that we are slowl
 ## Algorithm 2 --- i-FGSM
 
 i-FGSM, also known as Basic Iterative Method (BIM), is an extension of FGSM as its title would suggest. The method is iterative as it performs FGSM multiple times 
-
+This is the equation used as mentioned in the 2017 paper  
+![ifgsm_eq](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/87ea49a63eb80cb3d8ee313b955b7f0669d1ced0/assets/pngs/ifgsm_eq.png)
 
 ## Conclusions to Drawn
 
