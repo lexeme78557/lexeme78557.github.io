@@ -11,33 +11,20 @@ The goal of an adversial attack is to specifically add "noise" (or some other ca
 
 The most well known example (which comes from the original paper https://arxiv.org/pdf/1412.6572.pdf) is as follows
 ![panda](https://images.openai.com/blob/e10713f3-900b-4cb2-8209-201d8c9394a2/adversarial_img_1.png)
+Clearly we can tell that the image is of a panda. This noise in the middle is scaled using "e" and then added to the image on the left to produce our right image which still looks like a panda but our model is 99.3% confident that we now have a gibbon instead. Crazy right?!?
 
-Today we will be taking a closer look at white-box attacks. A white box attacks allows for the adversary to know the specifics of the model archetitecture, parameters, gradients, etc which allow for easier targeting. White-box attacks exploit the model's output gradient to generate fake examples which aim to look real. 
+
+Today we will be taking a closer look at white-box attacks. A white box attacks allows for the adversary to know the specifics of the model archetitecture, parameters, gradients, etc which allow for easier targeting. White-box attacks often exploit the model's output gradient to generate fake examples which aim to look real. 
 
 
 ## Algorithm 1 --- FGSM
 
-FGSM stand for Fast Gradient Sign Method
+FGSM stand for Fast Gradient Sign Method. The reason it is labelled as fast is that this method only requires one step. It works by simply maximizing the loss function then adding it back to the original image with respect to the sign of the gradient to produce our adversarial image. 
+![fgsm_eq](https://cdn-5f733ed3c1ac190fbc56ef88.closte.com/wp-content/uploads/2018/05/fgsm.png)
+This is the mathematical formulation. The reason FGSM works is that we are slowly shifting the image so that the loss towards the correct label grows so much so that our model will relabel our image something else. In the example above, we are moving away from the true panda class and shifting instead to some other incorrect one. The algorithm does not care what the other one is as long as it is not panda.
 
 
-## 2. Another thing
+## Algorithm 2 --- i-FGSM
 
-I am now talking about a second thing, probably also good.
+i-FGSM, also known as Basic Iterative Method (BIM), is an extension of FGSM as its title would suggest. 
 
-## 3. A third thing
-
-We are now getting into the weeds of things that I am saying.  It is probably unlikely someone has made it thus far.
-
-## 4. Thing #4.
-
-At this point, you are probably no longer into me listing off things.  Let's put in an image to placate the reader:
-
-![corg](https://media.istockphoto.com/photos/welsh-corgi-picture-id962032196?k=20&m=962032196&s=170667a&w=0&h=NhIyQdJgVw0cw_EeLtP3LcLExLuiAWPwzL6_WsRKUfQ=)
-
-## 5. The last thing
-
-This is my final thing, probably would be great if this was a TL;DR or summary.  But I don't have that for you.  I have given you so little already, why start saying anything useful now?
-
-Besides, all anybody wants is the DERP:
-
-![MAXIMUM DERP](http://3.bp.blogspot.com/-AXnXOPZgqMk/Un-xCBAa4gI/AAAAAAAAsWA/z_lZsvDoCRk/s1600/derpstages.jpg)
