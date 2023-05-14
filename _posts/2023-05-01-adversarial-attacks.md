@@ -24,6 +24,9 @@ FGSM stand for Fast Gradient Sign Method. First introduced as a concept in this 
 This is the mathematical formulation. The reason FGSM works is that we are slowly shifting the image so that the loss towards the correct label grows so much so that our model will relabel our image something else. In the example above, we are moving away from the true panda class and shifting instead to some other incorrect one. The algorithm does not care what the other one is as long as it is not panda.
 
 
+
+
+
 ## Algorithm 2 --- i-FGSM
 
 i-FGSM, also known as Basic Iterative Method (BIM), is an extension of FGSM as its title would suggest. The method is iterative as it performs FGSM multiple times 
