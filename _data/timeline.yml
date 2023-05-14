@@ -1,27 +1,31 @@
-- title: AMAZING STUFF
+- title: USP Algorithm Development Consultant, Boston Analytical Inc.		
+  from: 2020
+  to: 2020
+  description: Developed mathematical algorithm necessary to calculate fibroin impurity for USP Scaffold Silk Fibroin Monograph.
+  Simplification of methods and implementation of a locked Excel sheet to perform calculations.  
+  Excel spreadsheets were made GMP compliant for routine laboratory use.
+  Designed, built, and implemented graphical representation of data for visual demonstrations.
+
+
+- title: Research Assistant, UIUC CS
+  from: 2021
+  to: 2021
+  description: Designed, developed, and trained an encoder-decoder model for abstractive text summarization on parsed DailyMail/CNN datasets.
+   Researched state-of-the-art techniques regarding extractive and abstractive text summarization. 
+   Summarized and published summaries of above extractive and abstractive text summarization for departmental use.
+
+
+- title: Student, UIUC CS
   from: 2019
-  to: present
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-               reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+  to: 2023
+  description: 
 
-- title: Student, Harvard CS
-  from: 2013
-  to: 2018
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-               reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+- title: Course Assistant, UIUc
+  from: 2022
+  to: 2023
+  description: Assistant for CS 374 (Introduction to Algorithms) and CS 426 (Complier Construction).
+              Hosted office hours for 374 and graded weekly written homework solutions for problems ranging from regex to DP to graph problems to P-NP.
+              Maintained and updated scripts (bash) and test cases for routine homework assessment for CS 426. 
+              Worked on maintaining LLVM environment.
 
-- title: Software Engineer, Google, UK
-  from: 2018
-  to: present
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-               reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
