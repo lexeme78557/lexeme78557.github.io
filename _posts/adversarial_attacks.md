@@ -1,6 +1,6 @@
 ---
 title: Adversarial Attacks
-tags: [White-Box Attacks, Deep Learning]
+tags: [White-Box, Deep-Learning]
 style: fill
 color: secondary
 description: Some introductory analysis into basic white box methods.
