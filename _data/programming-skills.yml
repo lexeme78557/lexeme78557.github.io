@@ -1,14 +1,40 @@
-- name: HTML5/CSS3
+- name: Python
+  percentage: 90
+  level: Expert
+  color: secondary
+
+- name: C++
+  percentage: 90
+  level: Expert
+  color: danger
+  
+
+- name: Java
   percentage: 90
   level: Expert
   color: danger
 
-- name: Go
-  percentage: 5
-  level: Beginner
-  color:
-
-- name: Python
+- name: Javascript
   percentage: 90
   level: Expert
+  color: danger
+
+- name: R
+  percentage: 70
+  level: Intermediate
+  color: secondary
+
+- name: php
+  percentage: 40
+  level: Beginner
+  color: secondary
+
+- name: MySQL
+  percentage: 60
+  level: Intermediate
+  color: secondary
+
+- name: PyTorch
+  percentage: 60
+  level: Intermediate
   color: secondary
