@@ -7,7 +7,7 @@
 ### Site Settings ###
 title               : Dylan Han 
 description         : >-
-                      I am definitely not a corgi!
+                      Hi! I'm Dylan and I'm interested in learning more about computer science!
 baseurl             : ""   # Change to empty quotes if you are hosting your site at <your-username>.github.io directly,
 #                                             otherwise will be hosted at <your-username>.github.io/{{base_url}}
 repository          : drinkingtea2223/drinkingtea2223.github.io               # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
@@ -34,11 +34,11 @@ nav_exclude:                                            # The following paths ar
 
 ### Author Info ###
 author:
-  name              : A. P. Corgi
-  image             : https://dogtime.com/assets/uploads/gallery/pembroke-welsh-corgi-dog-breed-pictures/prance-8.jpg
+  name              : Dylan Han
+  image             : https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/teapot.png
 #  behance           : your_username
 # dribbble          : your_username
-  email             : username@domain.com
+  email             : dhan78557@gmail.com
 #  facebook          : your_username
   github            : drinkingtea2223 # JPN
 # gitlab            : your_username
@@ -51,9 +51,9 @@ author:
 # stackoverflow     : your_user_id
 # tumblr            : your_username.tumblr.com
 #  twitch            : your_username
-  twitter           : your_username
+#  twitter           : your_username
 #  vimeo             : your_username
-  youtube           : your_channel_name
+#  youtube           : your_channel_name
 # keybase           : your_username
 
 
