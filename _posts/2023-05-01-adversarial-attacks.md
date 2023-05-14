@@ -11,7 +11,7 @@ The goal of an adversial attack is to specifically add "noise" (or some other ca
 
 The most well known example (which comes from the [original paper](https://arxiv.org/pdf/1412.6572.pdf)) is as follows
 ![panda](https://images.openai.com/blob/e10713f3-900b-4cb2-8209-201d8c9394a2/adversarial_img_1.png)
-Clearly we can tell that the image is of a panda. This noise in the middle is scaled using "e" and then added to the image on the left to produce our right image which still looks like a panda but our model is 99.3% confident that we now have a gibbon instead. Crazy right?!?
+Clearly we can tell that the image is of a panda. This noise in the middle is scaled using "ε" and then added to the image on the left to produce our right image which still looks like a panda but our model is 99.3% confident that we now have a gibbon instead. Crazy right?!?
 
 
 Today we will be taking a closer look at white-box attacks. A white box attacks allows for the adversary to know the specifics of the model archetitecture, parameters, gradients, etc which allow for easier targeting. White-box attacks often exploit the model's output gradient to generate fake examples which aim to look real. 
@@ -32,6 +32,16 @@ This is the mathematical formulation. The reason FGSM works is that we are slowl
 i-FGSM, also known as Basic Iterative Method (BIM), is an extension of FGSM as its title would suggest. The method is iterative as it performs FGSM multiple times 
 This is the equation used as mentioned in the 2017 paper  
 ![ifgsm_eq](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/87ea49a63eb80cb3d8ee313b955b7f0669d1ced0/assets/pngs/ifgsm_eq.png)
+
+The number of iterations that we perform is not static. Instead we apply a heuristic min(ε + 4, 1.25)
+
+
+## Algorithm 3 --- L.L.Class
+
+LLC, least-likely class, is introduced in the 2017 as iterative least-likely class method with equation
+
+As the name would suggest, the goal of this method is to shift our original image towards an unlikely target class. The idea behind this method is to allow for classifications of "meaningful interest" as for larger models trained on larger datasets, we do not really want one type of cat to be misclassified as another breed of cat. The aim is to allow for classifications that are clearly outrageous 
+
 
 ## Conclusions to Drawn
 
