@@ -1,11 +1,11 @@
 - name: Excel
   percentage: 95
-  level: Beginner
+  level: Expert
   color: success
 
 - name: Cooking
-  percentage: 40
-  level: Beginner
+  percentage: 50
+  level: Intermediate
   color: info
 
 - name: Photography

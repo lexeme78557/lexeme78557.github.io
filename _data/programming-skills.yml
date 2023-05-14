@@ -24,11 +24,6 @@
   level: Intermediate
   color: secondary
 
-- name: php
-  percentage: 40
-  level: Beginner
-  color: secondary
-
 - name: MySQL
   percentage: 60
   level: Intermediate
@@ -37,4 +32,9 @@
 - name: PyTorch
   percentage: 60
   level: Intermediate
+  color: secondary
+
+- name: php
+  percentage: 40
+  level: Beginner
   color: secondary
