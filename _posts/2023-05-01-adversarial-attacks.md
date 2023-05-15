@@ -23,8 +23,11 @@ FGSM stand for Fast Gradient Sign Method. First introduced as a concept in this 
 ![fgsm_eq](https://cdn-5f733ed3c1ac190fbc56ef88.closte.com/wp-content/uploads/2018/05/fgsm.png)
 This is the mathematical formulation. The reason FGSM works is that we are slowly shifting the image so that the loss towards the correct label grows so much so that our model will relabel our image something else. In the example above, we are moving away from the true panda class and shifting instead to some other incorrect one. The algorithm does not care what the other one is as long as it is not panda.
 
-Here are some examples of misclassifications attacking a pretrained [resnet50] (https://pytorch.org/vision/main/models/generated/torchvision.models.resnet50.html) model using images from the [ImageNette](https://github.com/fastai/imagenette) dataset.
+Here are some examples of misclassifications attacking a pretrained [resnet50](https://pytorch.org/vision/main/models/generated/torchvision.models.resnet50.html) model using images from the [ImageNette](https://github.com/fastai/imagenette) dataset. ImageNette is a much smaller subset of [ImageNet](https://www.image-net.org/) which is a common training set for many neural networks. For purposes of our study, ImageNette works as it is significantly smaller than ImageNet and allows for considerably speedier runtimes.
+
 ![fgsm_images](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/fgsm-resnet.png) 
+
+I might clarify that tench is a type of aquatic fish also known as doctor fish. We see that for some values, the misclassifications are rather reasonable. 
 
 
 
