@@ -1,6 +1,6 @@
 ---
 name: Covid19 Representations in NYC
-tools: [Python, HTML, vega-lite]
+tools: [Python, altair, HTML, vega-lite]
 image: assets/pngs/nyc_covid.png
 description: Final Project
 custom_js:
