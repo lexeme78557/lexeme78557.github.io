@@ -7,7 +7,7 @@
 ### Site Settings ###
 title               : Dylan Han 
 description         : >-
-                      Hi! I'm Dylan and I like swimming, hiking, and reading science-fiction books.
+                      Hi! I'm Dylan and I like swimming, hiking, and reading science-fiction.
 baseurl             : ""   # Change to empty quotes if you are hosting your site at <your-username>.github.io directly,
 #                                             otherwise will be hosted at <your-username>.github.io/{{base_url}}
 repository          : drinkingtea2223/drinkingtea2223.github.io               # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
