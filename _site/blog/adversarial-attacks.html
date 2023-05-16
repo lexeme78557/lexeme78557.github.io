@@ -21,12 +21,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="An Introduction into Adversarial Attacks">
-  <meta property="og:description" content="This is a blog post to get you started.">
-  <meta property="og:image" content="https://images.openai.com/blob/e10713f3-900b-4cb2-8209-201d8c9394a2/adversarial_img_1.png">
+  <meta property="og:title" content="Adversarial Attacks">
+  <meta property="og:description" content="Some introductory analysis into basic white box methods.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/87ea49a63eb80cb3d8ee313b955b7f0669d1ced0/assets/pngs/teapot_small.png">
 
-  <title>An Introduction into Adversarial Attacks</title>
-  <meta name="description" content="This is a blog post to help show some basic white-box attack methods and its results.">
+  <title>Adversarial Attacks</title>
+  <meta name="description" content="Some introductory analysis into basic white box methods.">
 
   <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
 
@@ -73,41 +73,81 @@
 
 </nav>
     <div class="col-lg-10 mx-auto mt-5 markdown-body">
-  <h1><b>An Introduction into Adversarial Attacks</b></h1>
+  <h1><b>Adversarial Attacks</b></h1>
 
 <p class="post-metadata text-muted">
-  May 2023 -  
-  <b>15 min read time</b>
+  16 May 2023 -  
+  <b>6 mins read time</b>
 
   <br>Tags: 
     
-    <a class="text-decoration-none no-underline" href="/blog/tags#White-Box">
-      <span class="tag badge badge-pill text-primary border border-primary">White Box</span>
+    <a class="text-decoration-none no-underline" href="/blog/tags#adversarial-attacks">
+      <span class="tag badge badge-pill text-primary border border-primary">Adversarial-Attacks</span>
     </a>
     
-    <a class="text-decoration-none no-underline" href="/blog/tags#Deep-Learning">
-      <span class="tag badge badge-pill text-primary border border-primary">Deep Learning</span>
+    <a class="text-decoration-none no-underline" href="/blog/tags#deep-learning">
+      <span class="tag badge badge-pill text-primary border border-primary">Deep-Learning</span>
     </a>
     </p>
 
-  <h1> An Intoduction </h1>
-  <p> The goal of an adversial attack is to specifically add "noise" (or some other carefully picked input) </p>
-  <p> to an image in such a manner that the human reader does not notice anything different, </p>
-  <p> but a well-trained machine model will end up classifying the image incorrectly. For example, </p>
-  <p> we have an image of a cat, but with some pixel changes here and there, we wish for the model to identify </p>
-  <p> our cat as something else; perhaps a dog or even a car. </p>
+<h2 id="introduction">Introduction</h2>
+<p>The goal of an adversial attack is to specifically add “noise” (or some other carefully picked input) to an image in such a manner that the human reader does not notice anything different, but a well-trained machine model will end up classifying the image incorrectly. For example, we have an image of a cat, but with some pixel changes here and there, we wish for the model to identify our cat as something else; perhaps a dog or even a car.</p>
 
-  <br>
-  <br>
+<p>The most well known example (which comes from the <a href="https://arxiv.org/pdf/1412.6572.pdf">original paper</a>) is as follows
+<img src="https://images.openai.com/blob/e10713f3-900b-4cb2-8209-201d8c9394a2/adversarial_img_1.png" alt="panda" />
+Clearly we can tell that the image is of a panda. This noise in the middle is scaled using “ε” and then added to the image on the left to produce our right image which still looks like a panda but our model is 99.3% confident that we now have a gibbon instead. Crazy right?!?</p>
 
-  <p> The most commonly shown example comes from the original paper <a href="https://arxiv.org/pdf/1412.6572.pdf" ></a></p>
-  <p> <img src=https://images.openai.com/blob/e10713f3-900b-4cb2-8209-201d8c9394a2/adversarial_img_1.png, alt="panda" /> </p>
+<p>Today we will be taking a closer look at white-box attacks. A white box attacks allows for the adversary to know the specifics of the model archetitecture, parameters, gradients, etc which allow for easier targeting. White-box attacks often exploit the model’s output gradient to generate fake examples which aim to look real.</p>
 
-  <p> Today we will be taking a closer look at white-box attacks. A white box attacks allows for the adversary</p>
-  <p> to know the specifics of the model archetitecture, parameters, gradients, etc which allow for easier targeting. </p>
-  <p> White-box attacks exploit the model's output gradient to generate fake examples which aim to look real. </p>
+<h2 id="algorithm-1--fgsm">Algorithm 1 — FGSM</h2>
 
-  <h2> FGSM </h2>
+<p>FGSM stand for Fast Gradient Sign Method. First introduced as a concept in this <a href="https://arxiv.org/pdf/1412.6572.pdf">2014 paper</a>, its purpose was to provide a simple way to make adversarial examples of nonlinear models. The reason it is labelled as fast is that this method only requires one step which can be made efficient through <a href="https://towardsdatascience.com/understanding-backpropagation-algorithm-7bb3aa2f95fd">backpropagation</a>. It works by simply maximizing the loss function then adding it back to the original image with respect to the sign of the gradient to produce our adversarial image. 
+<img src="https://cdn-5f733ed3c1ac190fbc56ef88.closte.com/wp-content/uploads/2018/05/fgsm.png" alt="fgsm_eq" />
+This is the mathematical formulation. The reason FGSM works is that we are slowly shifting the image so that the loss towards the correct label grows so much so that our model will relabel our image something else. In the example above, we are moving away from the true panda class and shifting instead to some other incorrect one. The algorithm does not care what the other one is as long as it is not panda.</p>
+
+<p>Here are some examples of misclassifications attacking a pretrained <a href="https://pytorch.org/vision/main/models/generated/torchvision.models.resnet50.html">resnet50</a> model using images from the <a href="https://github.com/fastai/imagenette">ImageNette</a> dataset. ImageNette is a much smaller subset of <a href="https://www.image-net.org/">ImageNet</a> which is a common training set for many neural networks. For purposes of our study, ImageNette works as it is significantly smaller than ImageNet and allows for considerably speedier runtimes.</p>
+
+<p><img src="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/fgsm-resnet.png" alt="fgsm_images" /></p>
+
+<p>I might clarify that tench is a type of aquatic fish also known as doctor fish. We see that for some values, the misclassifications are rather reasonable. Eel and snoek are both types of fish and reel (fishing reel) is identified for another image with both the tench and the rod. However, with an increase in epsilon, the results stray away from aquatic animals and give results such as wild boar and partridge.</p>
+
+<h2 id="algorithm-2--i-fgsm">Algorithm 2 — i-FGSM</h2>
+
+<p>i-FGSM, iterative FGSM or also known as Basic Iterative Method (BIM), is an extension of FGSM as its title would suggest. The method is iterative as it performs FGSM multiple times 
+This is the equation used as mentioned in the 2017 paper<br />
+<img src="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/87ea49a63eb80cb3d8ee313b955b7f0669d1ced0/assets/pngs/ifgsm_eq.png" alt="ifgsm_eq" /></p>
+
+<p>The number of iterations that we perform is not static. Instead we apply a heuristic min(ε + 4, 1.25ε) as the 2017 paper suggests. The point of using this heuristic is to limit the computational costs while still aimiming to reach the best possible results. Due to this being an iterative method, we must compute a step of gradient descent for every iteration which is why this method is much slower to run than FGSM. There are clear benefits however as will be reviewed in depth later down in the post. But from a cursory glance, an iterative method will allow for the error to stray further and further away from the input as we move the error function in the direction of the gradient.</p>
+
+<p>Similarly, here are some misclassified images from ImageNette
+<img src="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/ifgsm-resnet.png" alt="ifgsm_images" /></p>
+
+<h2 id="algorithm-3--llclass">Algorithm 3 — L.L.Class</h2>
+
+<p>LLC, least-likely class, is introduced in the 2017 as iterative least-likely class method with equation</p>
+
+<p>As the name would suggest, the goal of this method is to shift our original image towards an unlikely target class. The idea behind this method is to allow for classifications of “meaningful interest” as for larger models trained on larger datasets with more specific labels, we do not really want one type of cat to be misclassified as another breed of cat. The aim is to allow for more classifications that are clearly outrageous and “interesting”. The equation 
+<img src="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/illc_eq.png" alt="illc_eq" /></p>
+
+<p>Here I’ll be using a simplified approach from the one introduced in the paper which consists only of one iteration
+<img src="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/llc_eq.png" alt="llc_eq" />
+(Running on GCP vm is expensive so I’ll take this shortcut approach but for individuals interested in better quality outputs, iterative method is better just much slower to run)</p>
+
+<p>Similarly, here are some misclassified images from ImageNette
+<img src="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/llc-resnet.png" alt="llc_images" /></p>
+
+<h2 id="conclusions-to-drawn">Conclusions to Drawn</h2>
+<p>Here is a graph showing the accuracies of our model on the perturbed images.</p>
+
+<p><img src="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/adversarial-attacks-acc-vs-eps.png" alt="acc-vs-eps-graph" /></p>
+
+<p>Obviously increasing the epsilon values helps to create images that are “more wrong”. But as epsilon increases too much, the images become noticeably more granular and less like the original. Too many pixels changed and shifted is not ideal as the goal is to still provide an image that looks much like the original one. Looking at the graph, we will notice that the iterative method is much better performancewise. This is due to the fact that the interative method allows for much finer exploitations and do not destroy our original image as much even at higher epsilon values.</p>
+
+<p>Summarizing some ideas from the two papers linked above, it is clear that there are still ways to improve upon modern neural networks. “The existence of adversarial examples suggests that being able to explain the training data or even being able to correctly label the test data does not imply that our models truly understand the tasks we have asked them to perform.” <a href="https://arxiv.org/pdf/1412.6572.pdf">2014</a> The prevalently used gradient-based optimization methods allows for confident fitting of training set examples but leaves much room for our rather simple and linear algorithms to find holes and random pixels to exploit.</p>
+
+<h2 id="some-final-thoughts">Some Final Thoughts</h2>
+
+<p>Proper design for protection against strong adversarial attacks is an important area that remains unsolved as of the present. The simplicity of these adversarial algorithms and their effectiveness against models which are trained for weeks on end being fed trillions of bytes of data shows that there is still much work left to be done. The simple truth is that models function differently than how we may have initially designed them to operate. Small pertubations of even single pixels can arbitrarily fool complex models. Of recent, twists on implementations of <a href="https://arxiv.org/pdf/1406.2661.pdf">GAN</a> have been tried as possible defense mechanisms. However, GAN’s themselves are very costly computationally to both train and run. Incorrect/Incomplete training can lead to poor results. The parameters that a GAN model may learn can also vary between runs and makes results hard to replicate. I’ll being showing some basic ideas of such concepts in another blogpost. Be on the lookout!</p>
 
 
 
@@ -120,7 +160,7 @@
     by <strong>Dylan Han</strong>
   </small>
 
-  <div class="container-fluid justify-content-center"><a class="social mx-1"  href="mailto:username@domain.com"
+  <div class="container-fluid justify-content-center"><a class="social mx-1"  href="mailto:dhan78557@gmail.com"
        style="color: #6c757d"
        onMouseOver="this.style.color='#db4437'"
        onMouseOut="this.style.color='#6c757d'">
@@ -130,19 +170,11 @@
        onMouseOver="this.style.color='#333333'"
        onMouseOut="this.style.color='#6c757d'">
       <i class="fab fa-github fa-1x"></i>
-    </a><a class="social mx-1"  href="https://www.twitter.com/your_username"
-       style="color: #6c757d"
-       onMouseOver="this.style.color='#1da1f2'"
-       onMouseOut="this.style.color='#6c757d'">
-      <i class="fab fa-twitter fa-1x"></i>
-    </a><a class="social mx-1"  href="https://www.youtube.com/your_channel_name"
-       style="color: #6c757d"
-       onMouseOver="this.style.color='#ff0000'"
-       onMouseOut="this.style.color='#6c757d'">
-      <i class="fab fa-youtube fa-1x"></i>
     </a>
 
-</div>
+</div><small id="attribution">
+    theme <a href="https://github.com/YoussefRaafatNasry/portfolYOU">portfolYOU</a>
+  </small>
 
 </footer>
 

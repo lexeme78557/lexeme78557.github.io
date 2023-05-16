@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<!--
+  portfolYOU Jekyll theme by Youssef Raafat
+  Free for personal and commercial use under the MIT license
+  https://github.com/YoussefRaafatNasry/portfolYOU
+-->
+
+<html lang="en" class="h-100">
+
+<head>
+
+  
+  
+  
+
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Covid19 Representations in NYC">
+  <meta property="og:description" content="Final Project">
+  <meta property="og:image" content="assets/pngs/nyc_covid.png">
+
+  <title>Covid19 Representations in NYC</title>
+  <meta name="description" content="Final Project">
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+
+  <!-- Theme style -->
+  <script src="/assets/js/theme.js"></script>
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.0/css/all.css">
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+
+  <!-- Animate CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+
+<body class="h-100 d-flex flex-column">
+
+  <main class="flex-shrink-0 container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-themed">
+
+  <a class="navbar-brand" href="/"><h5><b>Dylan Han</b></h5></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-1x fa-bars text-themed"></i>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto"><a class="nav-item nav-link active" href="/projects/">Projects</a>
+
+      <a class="nav-item nav-link " href="/blog/">Blog</a>
+
+      <a class="nav-item nav-link " href="/about/">About</a>
+
+      
+
+      <span id="theme-toggler" class="nav-item nav-link" role="button" onclick="toggleTheme()"></span>
+    </div>
+  </div>
+
+</nav>
+    <div class="col-lg-10 mx-auto mt-5 markdown-body">
+  <p>Covid Reports for Large Cities in America — Dylan Han</p>
+
+<h2 id="some-quick-visualizations">Some Quick Visualizations</h2>
+
+<p>The recent Corona Virus Epidemic has made quite a mark in terms of interupting daily goings. Curious as to how things were going in other cities in America, I decided to take a look and make some visualizations for some of the larger cities where spreading is likely to be more common.</p>
+
+<vegachart schema-url="/assets/json/p2_chart3.json" style="width: 100%"></vegachart>
+
+<p>Here is a depiction of case and hospitalization counts for NYC within the last few years. The darker the color indicates the more recent the listing. We can see that as of recent, the numbers are quite low which is a good sign of things to come. The last signs of obvious red come from January 2022 which is already over a year ago. The graph is quite large in terms of scaling and we can pick a month to look at yearly trends more easily. After panning around, double click to bring the graph back into focus. Looking at July or September can be quite scary individually but thankfully the axises scales are quite small and are tiny in terms of the bigger picture. Hovering over datapoints will also show some more detailed information of the counts recorded.</p>
+
+<p>Below is a plot showing the amount of recorded cases by month in New York City. We can see that December 2021 was by far the most severe month of the last three years. I’ve chosen a slightly differing color palette but still red as I feel it is the only color suitable for shading in this topic of pandemic. Using a heatmap is good for this type of task as we can clearly distinguish between the months and years. The scatterplot above is better suited for selecting months and observing those trends separately.</p>
+
+<vegachart schema-url="/assets/json/p2_chart2.json" style="width: 100%"></vegachart>
+
+<p>Interested in how other cities compared, here is a similar graph I made but for the city of Chicago. Though not as drastic as in NYC (in terms of the number of cases), we also can see that December 2021 along with January 2022 were the two most severe months in terms of number of cases.</p>
+
+<vegachart schema-url="/assets/json/p2_chart5.json" style="width: 100%"></vegachart>
+
+<p>Same as we saw in Chicago, the Los Angeles peaks also occurred in December 2021 along with January 2022. It seems that these are the two most severe months for all three major cities that I’ve looked at.</p>
+
+<vegachart schema-url="/assets/json/p2_chart6.json" style="width: 100%"></vegachart>
+
+<p>Although numbers may not be precise due to individuals staying home instead of begining marked at the hospital or clinic, these visualizations still provide a good estimation of what the journey along this pandemic looked like. 
+For further investigations I will take a dive into reports for other large cities.</p>
+
+<p>The original data is taken from https://data.gov/ but I’ve done some editting and here are the versions I am using</p>
+
+<div class="left">
+<a class="m-1 btn btn-outline-primary btn-2 " href="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/datasets/nyc_data.csv">
+  NYC Data
+</a>
+<a class="m-1 btn btn-outline-primary btn-2 " href="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/datasets/chicago_data.csv">
+  Chicago Data
+</a>
+<a class="m-1 btn btn-outline-primary btn-2 " href="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/datasets/la_data.csv">
+  LA Data
+</a>
+</div>
+
+<div class="right">
+<a class="m-1 btn btn-outline-primary btn-2 " href="https://github.com/drinkingtea2223/drinkingtea2223.github.io/blob/main/python_notebooks/p3.ipynb">
+  The Analysis
+</a>
+</div>
+
+
+</div>
+  </main>
+  <footer class="mt-auto py-3 text-center">
+
+  <small class="text-muted mb-2">
+    <i class="fas fa-code"></i> with <i class="fas fa-heart"></i>
+    by <strong>Dylan Han</strong>
+  </small>
+
+  <div class="container-fluid justify-content-center"><a class="social mx-1"  href="mailto:dhan78557@gmail.com"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#db4437'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fas fa-envelope fa-1x"></i>
+    </a><a class="social mx-1"  href="https://www.github.com/drinkingtea2223"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#333333'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-github fa-1x"></i>
+    </a>
+
+</div><small id="attribution">
+    theme <a href="https://github.com/YoussefRaafatNasry/portfolYOU">portfolYOU</a>
+  </small>
+
+</footer>
+
+
+<!-- Custom page specific js files -->
+  
+    <script src='/assets/js/vega.min.js' type="text/javascript"></script>
+  
+    <script src='/assets/js/vega-lite.min.js' type="text/javascript"></script>
+  
+    <script src='/assets/js/vega-embed.min.js' type="text/javascript"></script>
+  
+    <script src='/assets/js/justcharts.js' type="text/javascript"></script>
+  
+
+
+
+  
+  <!-- GitHub Buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- jQuery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- wow.js CDN & Activation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+<script> new WOW().init(); </script>
+
+<!-- Initialize all tooltips -->
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+</body>
+
+</html>
