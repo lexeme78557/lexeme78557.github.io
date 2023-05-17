@@ -87,11 +87,11 @@
 
 <p><img src="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/big_awkward_fm.png" alt="large-map" /></p>
 
-<p>I had originally made the graph with ipywidgets and contextily but unfortunately it is impossible to transport the widget and maintain its interactivity.</p>
+<p>I had originally made the graph with ipywidgets and contextily but unfortunately it is impossible to transport the widget and maintain its interactivity. However, as you will see from the image below, contextily allows for creating a background much like one that might be found in Google maps or other such services and is more visually appealing than the bland gray blocks and white contour outlines I have created.</p>
 
 <p><img src="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/fm_mass_ctx.png" alt="ctx-map" /></p>
 
-<p>For individuals interested in seeing this particular rendering with a more realistic map background, please try out the code below in a jupyter notebook or some other python setting.</p>
+<p>For individuals interested in seeing this particular rendering with a more realistic map background, please try out the code below in a <a href="https://jupyter.org/">jupyter notebook</a> or another <a href="https://www.python.org/">python</a> environment of your liking.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
@@ -122,7 +122,7 @@
 
 </code></pre></div></div>
 
-<p>The data regarding farmer’s markets is taken from https://hub.arcgis.com/ with a huge thanks to https://github.com/johan/world.geo.json for providing geojson data for my altair base projection.</p>
+<p>The data regarding farmer’s markets is taken from <a href="https://hub.arcgis.com/">Arcgis</a> with geojson to topojson file for my altair base projection coming from <a href="https://github.com/johan/world.geo.json">here</a> and knitting services for putting together the pieces of Massachusetts from <a href="https://geojson.io">here</a></p>
 
 
 </div>
