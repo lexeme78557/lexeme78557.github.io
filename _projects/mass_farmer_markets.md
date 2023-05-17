@@ -17,7 +17,7 @@ Farmer's Markets
 Growing up in a small town surrounded by farms and field crops, the running joke at the high school was that we had more cows than students (probably not true but it's pretty close!). Supporting locally grown produce was always a big thing in our area. Curious to see where else in the state I could look for more fresh vegetables, here are the results of my search.
 
 
-<vegachart schema-url="{{ site.baseurl }}/assets/json/layered_chart.json" style="width: 100%"></vegachart>
+<vegachart schema-url="{{ site.baseurl }}/assets/json/farmer_market_chart1.json" style="width: 100%"></vegachart>
 
 Each dot on the chart represents one farmer market location and hovering over a dot will show the location and town along with a website if available. There is also the dropdown menu at the bottom which has towns sorted alphabetically. If your town does not appear on the list, it likely does not have its own farmer's market. A very unfortunate result, but there are  over 300 markets spread around the state. Surely one of them is close by enough to visit! 
 
