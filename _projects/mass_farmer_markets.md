@@ -25,11 +25,11 @@ One critique about this map I've made is that there is no function to zoom in/ou
 
 ![large-map](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/big_awkward_fm.png)
 
-I had originally made the graph with ipywidgets and contextily but unfortunately it is impossible to transport the widget and maintain its interactivity.
+I had originally made the graph with ipywidgets and contextily but unfortunately it is impossible to transport the widget and maintain its interactivity. However, as you will see from the image below, contextily allows for creating a background much like one that might be found in Google maps or other such services and is more visually appealing than the bland gray blocks and white contour outlines I have created. 
 
 ![ctx-map](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/fm_mass_ctx.png)
 
-For individuals interested in seeing this particular rendering with a more realistic map background, please try out the code below in a jupyter notebook or some other python setting.
+For individuals interested in seeing this particular rendering with a more realistic map background, please try out the code below in a [jupyter notebook](https://jupyter.org/) or another [python](https://www.python.org/) environment of your liking.
 
 ```python
 
@@ -61,7 +61,7 @@ def interact_plot(btype):
 
 ```
 
-The data regarding farmer's markets is taken from https://hub.arcgis.com/ with a huge thanks to https://github.com/johan/world.geo.json for providing geojson data for my altair base projection. 
+The data regarding farmer's markets is taken from [Arcgis](https://hub.arcgis.com/) with geojson to topojson file for my altair base projection coming from [here](https://github.com/johan/world.geo.json) and knitting services for putting together the pieces of Massachusetts from [here](https://geojson.io)
 
 
 
