@@ -1,7 +1,7 @@
 ---
 name: Farmer's Markets
 tools: [Python, altair, HTML, vega-lite]
-image: assets/pngs/nyc_covid.png
+image: assets/pngs/farmer_market_icon.png
 description: Visualization of Farmer's Markets within Massachusetts
 custom_js:
   - vega.min
@@ -31,34 +31,35 @@ I had originally made the graph with ipywidgets and contextily but unfortunately
 
 For individuals interested in seeing this particular rendering with a more realistic map background, please try out the code below in a jupyter notebook or some other python setting.
 
-'''
-  import numpy as np
-  import pandas as pd
-  import matplotlib.pyplot as plt
-  import geopandas 
-  import ipywidgets
-  import contextily as ctx
+```python
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import geopandas 
+import ipywidgets
+import contextily as ctx
 
 
-  mass = geopandas.read_file("https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/Massachusetts_Counties/MapServer/0/query?outFields=*&where=1%3D1&f=geojson")
-  markets = geopandas.read_file("https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/DPH/DPH_Farmers_Markets/MapServer/0/query?outFields=*&where=1%3D1&f=geojson")
+mass = geopandas.read_file("https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/Massachusetts_Counties/MapServer/0/query?outFields=*&where=1%3D1&f=geojson")
+markets = geopandas.read_file("https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/DPH/DPH_Farmers_Markets/MapServer/0/query?outFields=*&where=1%3D1&f=geojson")
 
-  markets_subset = markets.loc[markets["TYPE"]!="Farmers Markets"]
+markets_subset = markets.loc[markets["TYPE"]!="Farmers Markets"]
 
-  @ipywidgets.interact(btype=sorted(set(markets['TOWN'].unique())))
+@ipywidgets.interact(btype=sorted(set(markets['TOWN'].unique())))
 
-  def interact_plot(btype):
-      markets_subset = markets.loc[markets["TOWN"]==btype]
-      fig, ax = plt.subplots(1, 1, figsize=(10,10))
+def interact_plot(btype):
+    markets_subset = markets.loc[markets["TOWN"]==btype]
+    fig, ax = plt.subplots(1, 1, figsize=(10,10))
 
-      mass.plot(ax=ax, alpha=0.5, edgecolor='k')
-      markets_subset.plot(column="TOWN", ax=ax, cmap='rainbow', categorical=True, legend=True)
-      
-      ctx.add_basemap(ax=ax, crs=markets.crs.to_string())
+    mass.plot(ax=ax, alpha=0.5, edgecolor='k')
+    markets_subset.plot(column="TOWN", ax=ax, cmap='rainbow', categorical=True, legend=True)
+    
+    ctx.add_basemap(ax=ax, crs=markets.crs.to_string())
 
-      plt.show()
+    plt.show()
 
-'''
+```
 
 The data regarding farmer's markets is taken from https://hub.arcgis.com/ with a huge thanks to https://github.com/johan/world.geo.json for providing geojson data for my altair base projection. 
 
