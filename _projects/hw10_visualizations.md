@@ -1,8 +1,8 @@
 ---
-name: HW 10
+name: UFO Sightings
 tools: [Python, HTML, vega-lite]
 image: assets/pngs/ufo2.png
-description: Assignment for hw10
+description: UFO Sightings in the US
 custom_js:
   - vega.min
   - vega-lite.min
@@ -10,7 +10,7 @@ custom_js:
   - justcharts
 ---
 
-HW 10
+UFO Sightings within the U.S.
 
 ## Search The Data & Methods
 

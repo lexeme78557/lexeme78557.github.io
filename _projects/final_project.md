@@ -2,7 +2,7 @@
 name: Covid19 Representations in NYC
 tools: [Python, altair, HTML, vega-lite]
 image: assets/pngs/nyc_covid.png
-description: Final Project
+description: Final Project for IS445
 custom_js:
   - vega.min
   - vega-lite.min
