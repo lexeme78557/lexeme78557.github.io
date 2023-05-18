@@ -16,6 +16,13 @@ Farmer's Markets
 
 Growing up in a small town surrounded by farms and field crops, the running joke at the high school was that we had more cows than students (probably not true but it's pretty close!). Supporting locally grown produce was always a big thing in our area. Curious to see where else in the state I could look for more fresh vegetables, here are the results of my search.
 
+
+!
+
+
+<object type="image/svg+xml" data="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/farmer_market.svg" class="logo"> Farmer's Market </object>
+
+
 <vegachart schema-url="{{ site.baseurl }}/assets/json/farmer_market_chart1.json" style="width: 100%"></vegachart>
 
 
