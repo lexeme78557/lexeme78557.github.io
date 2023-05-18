@@ -68,7 +68,7 @@ def interact_plot(btype):
 
 ```
 
-The data regarding farmer's markets is taken from [Arcgis](https://hub.arcgis.com/) with geojson to topojson file for my altair base projection coming from [here](https://github.com/johan/world.geo.json) and knitting services for putting together the pieces of Massachusetts from [here](https://geojson.io)
+The data regarding farmer's markets is taken from [Arcgis](https://hub.arcgis.com/) with geojson data for my altair base projection coming from [here](https://github.com/johan/world.geo.json) and knitting services for putting together the pieces of Massachusetts from [here](https://geojson.io)
 
 
 
