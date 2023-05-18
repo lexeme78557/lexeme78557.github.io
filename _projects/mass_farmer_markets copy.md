@@ -1,7 +1,7 @@
 ---
 name: Playing with WordCloud
 tools: [Python, nltk, wordcloud, HTML]
-image: assets/pngs/farmer_market_icon.png
+image: assets/pngs/atlas_shrugged_icon.png
 description: Experimenting with WordCloud
 custom_js:
   - vega.min
