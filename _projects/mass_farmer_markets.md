@@ -28,7 +28,9 @@ Each dot on the chart represents one farmer market location. Unfortunately as of
 For an interactive version, please go to this online [vega editor](https://vega.github.io/editor/#/) and paste in the following [text file](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/farmer_market_vega.txt). Select the option at the top left that says 'vega-lite' and click 'RUN' after pasting in the document. Then you should get a visualization where hovering over datapoints shows the location and city of the farmer's market along with a website link if available. The drop down menu is also available to get a closer look if you are ever unsure where to get started.
 
 
+<!---
 ![large-map](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/big_awkward_fm.png)
+--->
 
 I had originally made the graph with ipywidgets and contextily but unfortunately it is impossible to transport the widget and maintain its interactivity. However, as you will see from the image below, contextily allows for creating a background much like one that might be found in Google maps or other such services and is more visually appealing than the bland gray blocks and white contour outlines I have created. 
 
