@@ -10,11 +10,13 @@ weight: 3
 Hi I am **{{ site.author.name }}**,<br>
 and I'm excited to share some snippets of my work in various posts and demonstrations on this site.
 
+
+<div class="row">
+{% include about/timeline.html %}
+</div>
+
 <div class="row">
 {% include about/skills.html title="Programming Skills" source=site.data.programming-skills %}
 {% include about/skills.html title="Other Skills" source=site.data.other-skills %}
 </div>
 
-<div class="row">
-{% include about/timeline.html %}
-</div>
