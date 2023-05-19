@@ -1,40 +1,40 @@
 - name: Python
   percentage: 90
   level: Expert
-  color: secondary
+  color: Dark Blue
 
 - name: C++
   percentage: 90
   level: Expert
-  color: danger
+  color: Dark Blue
   
 
 - name: Java
   percentage: 90
   level: Expert
-  color: danger
+  color: Dark Blue
 
 - name: Javascript
-  percentage: 90
+  percentage: 80
   level: Expert
-  color: danger
+  color: Blue
 
 - name: R
   percentage: 70
   level: Intermediate
-  color: secondary
+  color: blue
 
 - name: MySQL
   percentage: 60
   level: Intermediate
-  color: secondary
+  color: info
 
 - name: PyTorch
   percentage: 60
   level: Intermediate
-  color: secondary
+  color: info
 
 - name: php
   percentage: 40
   level: Beginner
-  color: secondary
+  color: info

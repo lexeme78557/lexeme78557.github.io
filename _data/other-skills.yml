@@ -6,10 +6,10 @@
 - name: Cooking
   percentage: 50
   level: Intermediate
-  color: info
+  color: success
 
 - name: Photography
   percentage: 30
   level: Beginner
-  color: Info
+  color: success
 
