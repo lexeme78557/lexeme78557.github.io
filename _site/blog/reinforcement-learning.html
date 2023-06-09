@@ -21,12 +21,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Tags">
-  <meta property="og:description" content="Hi! I'm Dylan and I enjoy swimming, playing chess, and reading science-fiction.">
+  <meta property="og:title" content="Reinforcement Learning">
+  <meta property="og:description" content="An introduction to DQN and DDQN">
   <meta property="og:image" content="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/headshot.jpg">
 
-  <title>Tags</title>
-  <meta name="description" content="Hi! I'm Dylan and I enjoy swimming, playing chess, and reading science-fiction.">
+  <title>Reinforcement Learning</title>
+  <meta name="description" content="An introduction to DQN and DDQN">
 
   <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
 
@@ -73,59 +73,31 @@
 
 </nav>
     <div class="col-lg-10 mx-auto mt-5 markdown-body">
-  <!-- Collect tags from all posts --><!-- List tags & related posts -->
+  <h1><b>Reinforcement Learning</b></h1>
 
-<div class="py-3">
-  <h4 id="adversarial-attacks">Adversarial-Attacks</h4>
-  <ol>
-  <a href="/blog/adversarial-attacks"><li>Adversarial Attacks</li></a>
-    <small class="text-muted"> - 16 May 2023</small>
-    <br/>
-  </ol>
-</div>
-<hr class="bg-light">
+<p class="post-metadata text-muted">
+  25 May 2023 -  
+  <b>less than 1 min read time</b>
 
-<div class="py-3">
-  <h4 id="blogging">Blogging</h4>
-  <ol>
-  <a href="/blog/hello-blog-world"><li>The Hello World of Blogs</li></a>
-    <small class="text-muted"> - 14 May 2023</small>
-    <br/>
-  </ol>
-</div>
-<hr class="bg-light">
+  <br>Tags: 
+    
+    <a class="text-decoration-none no-underline" href="/blog/tags#deep-learning">
+      <span class="tag badge badge-pill text-primary border border-primary">Deep-Learning</span>
+    </a>
+    
+    <a class="text-decoration-none no-underline" href="/blog/tags#dqn">
+      <span class="tag badge badge-pill text-primary border border-primary">DQN</span>
+    </a>
+    </p>
 
-<div class="py-3">
-  <h4 id="dqn">DQN</h4>
-  <ol>
-  <a href="/blog/reinforcement-learning"><li>Reinforcement Learning</li></a>
-    <small class="text-muted"> - 25 May 2023</small>
-    <br/>
-  </ol>
-</div>
-<hr class="bg-light">
+<h2 id="introduction">Introduction</h2>
 
-<div class="py-3">
-  <h4 id="deep-learning">Deep-Learning</h4>
-  <ol>
-  <a href="/blog/reinforcement-learning"><li>Reinforcement Learning</li></a>
-    <small class="text-muted"> - 25 May 2023</small>
-    <br/><a href="/blog/adversarial-attacks"><li>Adversarial Attacks</li></a>
-    <small class="text-muted"> - 16 May 2023</small>
-    <br/>
-  </ol>
-</div>
-<hr class="bg-light">
+<p>Deep-Q Network, abbrievated as DQN, is a reinforcement learning method first proposed by <a href="https://arxiv.org/pdf/1312.5602.pdf">DeepMind</a> where a convolution neural network is trained using Q-Learning. Q-Learning (q for quality) is a reinforcement learning algorithm that tries to learn the “quality” of the next action in terms of maximizing future rewards. Ideally, we reward the agent for every step that it takes so that it can better understand which moves were better or worse. The rewards can vary depending on a variety of factors such as current environment, time surpassed, the preceding environment etc. and the goal is to have the agent learn what happens in between starting and “finishing” a game or completing a quest.</p>
 
-<div class="py-3">
-  <h4 id="technology">Technology</h4>
-  <ol>
-  <a href="/blog/hello-blog-world"><li>The Hello World of Blogs</li></a>
-    <small class="text-muted"> - 14 May 2023</small>
-    <br/>
-  </ol>
-</div>
-<hr class="bg-light">
+<pre><code class="language-math"> V(s)=\max {a}\left(R(s, a) +  \gamma \sum{s^{\prime}} P\left(s, a, s^{\prime}\right) V\left(s^{\prime}\right)\right)
+</code></pre>
+
+
 
 </div>
   </main>
