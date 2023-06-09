@@ -49,6 +49,9 @@ Here is a short demonstration of a sample game from the DDQN agent after 1600 ep
 ![ddqn-gif](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/breakout-ddqn-gif.gif)
 
 
+Below is another harder game from the ALE system. The [Phoenix](https://www.gymlibrary.dev/environments/atari/phoenix/) game allows for 8 total actions and the environment introduces more variables such as enemies moving and shooting projectiles. One of the benefits of training on Breakout is that the bricks at the top stay relatively consistent. Learning a game like Phoenix forces the agent to truly understand what is going on between each input image and interpret a correct action to undertake.
+![phoenix-gif](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/phoenix-gif.gif)
+
 
 
 ## Some Conclusions
