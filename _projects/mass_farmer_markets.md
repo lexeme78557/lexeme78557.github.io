@@ -16,8 +16,8 @@ Farmer's Markets
 
 Growing up in a small town surrounded by farms and field crops, the running joke at the high school was that we had more cows than students (probably not true but it's pretty close!). Supporting locally grown produce was always a big thing in our area. Curious to see where else in the state I could look for more fresh vegetables, here are the results of my search.
 
-![Farmer's Markets](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/farmer_market.svg)
-<img src="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/farmer_market.svg">
+![Farmer's Markets](https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/farmer_market.svg)
+<img src="https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/farmer_market.svg">
 
 
 <vegachart schema-url="{{ site.baseurl }}/assets/json/farmer_market_chart1.json" style="width: 100%"></vegachart>
@@ -25,16 +25,16 @@ Growing up in a small town surrounded by farms and field crops, the running joke
 
 Each dot on the chart represents one farmer market location. Unfortunately as of the making of this post, vega-lite is not supportive of interactivity so altair charts are static. That being said, check back often and maybe one day it'll suddenly have extra content as I see from my local environment! The big critique about this map I've made is that there is no function to zoom in/out. Unlike other altair maps, this one is built with geodata involved and is still a work-in-progress with limited features. The background projection of Massachusetts is also one I made myself as the current libraries only support all of United States which makes our region of interest too small to really make much sense of, especially without a zoom in feature available.
 
-For an interactive version, please go to this online [vega editor](https://vega.github.io/editor/#/) and paste in the following [text file](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/farmer_market_vega.txt). Select the option at the top left that says 'vega-lite' and click 'RUN' after pasting in the document. Then you should get a visualization where hovering over datapoints shows the location and city of the farmer's market along with a website link if available. The drop down menu is also available to get a closer look if you are ever unsure where to get started.
+For an interactive version, please go to this online [vega editor](https://vega.github.io/editor/#/) and paste in the following [text file](https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/farmer_market_vega.txt). Select the option at the top left that says 'vega-lite' and click 'RUN' after pasting in the document. Then you should get a visualization where hovering over datapoints shows the location and city of the farmer's market along with a website link if available. The drop down menu is also available to get a closer look if you are ever unsure where to get started.
 
 
 <!---
-![large-map](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/big_awkward_fm.png)
+![large-map](https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/pngs/big_awkward_fm.png)
 --->
 
 I had originally made the graph with ipywidgets and contextily but unfortunately it is impossible to transport the widget and maintain its interactivity. However, as you will see from the image below, contextily allows for creating a background much like one that might be found in Google maps or other such services and is more visually appealing than the bland gray blocks and white contour outlines I have created. 
 
-![ctx-map](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/fm_mass_ctx.png)
+![ctx-map](https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/pngs/fm_mass_ctx.png)
 
 For individuals interested in seeing this particular rendering with a more realistic map background, please try out the code below in a [jupyter notebook](https://jupyter.org/) or another [python](https://www.python.org/) environment of your liking.
 

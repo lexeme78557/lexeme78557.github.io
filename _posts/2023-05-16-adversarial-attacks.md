@@ -25,7 +25,7 @@ This is the mathematical formulation. The reason FGSM works is that we are slowl
 
 Here are some examples of misclassifications attacking a pretrained [resnet50](https://pytorch.org/vision/main/models/generated/torchvision.models.resnet50.html) model using images from the [ImageNette](https://github.com/fastai/imagenette) dataset. ImageNette is a much smaller subset of [ImageNet](https://www.image-net.org/) which is a common training set for many neural networks. For purposes of our study, ImageNette works as it is significantly smaller than ImageNet and allows for considerably speedier runtimes.
 
-![fgsm_images](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/fgsm-resnet.png) 
+![fgsm_images](https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/pngs/fgsm-resnet.png) 
 
 I might clarify that tench is a type of aquatic fish also known as doctor fish. We see that for some values, the misclassifications are rather reasonable. Eel and snoek are both types of fish and reel (fishing reel) is identified for another image with both the tench and the rod. However, with an increase in epsilon, the results stray away from aquatic animals and give results such as wild boar and partridge. 
 
@@ -34,34 +34,34 @@ I might clarify that tench is a type of aquatic fish also known as doctor fish. 
 
 i-FGSM, iterative FGSM or also known as Basic Iterative Method (BIM), is an extension of FGSM as its title would suggest. The method is iterative as it performs FGSM multiple times 
 This is the equation used as mentioned in the 2017 paper  
-![ifgsm_eq](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/87ea49a63eb80cb3d8ee313b955b7f0669d1ced0/assets/pngs/ifgsm_eq.png)
+![ifgsm_eq](https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/87ea49a63eb80cb3d8ee313b955b7f0669d1ced0/assets/pngs/ifgsm_eq.png)
 
 The number of iterations that we perform is not static. Instead we apply a heuristic min(ε + 4, 1.25ε) as the 2017 paper suggests. The point of using this heuristic is to limit the computational costs while still aimiming to reach the best possible results. Due to this being an iterative method, we must compute a step of gradient descent for every iteration which is why this method is much slower to run than FGSM. There are clear benefits however as will be reviewed in depth later down in the post. But from a cursory glance, an iterative method will allow for the error to stray further and further away from the input as we move the error function in the direction of the gradient.
 
 
 Similarly, here are some misclassified images from ImageNette
-![ifgsm_images](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/ifgsm-resnet.png)
+![ifgsm_images](https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/pngs/ifgsm-resnet.png)
 
 ## Algorithm 3 --- L.L.Class
 
 LLC, least-likely class, is introduced in the 2017 as iterative least-likely class method with equation
 
 As the name would suggest, the goal of this method is to shift our original image towards an unlikely target class. The idea behind this method is to allow for classifications of "meaningful interest" as for larger models trained on larger datasets with more specific labels, we do not really want one type of cat to be misclassified as another breed of cat. The aim is to allow for more classifications that are clearly outrageous and "interesting". The equation 
-![illc_eq](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/illc_eq.png)
+![illc_eq](https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/pngs/illc_eq.png)
 
 
 Here I'll be using a simplified approach from the one introduced in the paper which consists only of one iteration
-![llc_eq](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/llc_eq.png)
+![llc_eq](https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/pngs/llc_eq.png)
 (Running on GCP vm is expensive so I'll take this shortcut approach but for individuals interested in better quality outputs, iterative method is better just much slower to run)
 
 
 Similarly, here are some misclassified images from ImageNette
-![llc_images](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/llc-resnet.png)
+![llc_images](https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/pngs/llc-resnet.png)
 
 ## Conclusions to Drawn
 Here is a graph showing the accuracies of our model on the perturbed images. 
 
-![acc-vs-eps-graph](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/adversarial-attacks-acc-vs-eps.png)
+![acc-vs-eps-graph](https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/pngs/adversarial-attacks-acc-vs-eps.png)
 
 Obviously increasing the epsilon values helps to create images that are "more wrong". But as epsilon increases too much, the images become noticeably more granular and less like the original. Too many pixels changed and shifted is not ideal as the goal is to still provide an image that looks much like the original one. Looking at the graph, we will notice that the iterative method is much better performancewise. This is due to the fact that the interative method allows for much finer exploitations and do not destroy our original image as much even at higher epsilon values. 
 

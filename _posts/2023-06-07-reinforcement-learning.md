@@ -15,7 +15,7 @@ Deep Q-Network, abbrievated as DQN, is a reinforcement learning method first pro
 ### Target Network
 The difference between DQN and simple Q-learning is that with DQN, we are updating many state/action values at each timestep as opposed to just one update in Q-learning. Q-learning uses an exact value function whereas DQN uses a function approximator. This multiple updating in DQN can cause proximate action values which would be stable in Q-learning to be affected. During updating we use a target network (described in the original paper as Q-Network) which allows for the parametes of the target function to be fixed with the network of latest steps. 
 
-![target-network](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/target-network.png)
+![target-network](https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/pngs/target-network.png)
 
 Without the target network, the learning would become unstable as instead of updating on 'p' (as shown in the figure above), we would instead be relying on 'a' for both the target and the prediction. This would cause the two to not be independent and can often result in what is called ['catastrophic forgetting'](https://en.wikipedia.org/wiki/Catastrophic_interference). The underlying idea of using a target network is to allow the system to build upon previous experience and successes.
 
@@ -35,22 +35,22 @@ DDQN, double DQN, solves some of these problems of iterrelated values by using t
 ### Some Results
 I played around with a standard DQN setup on the [Breakout](https://www.gymlibrary.dev/environments/atari/breakout/). For purposes of reinforcement learning, Breakout is a very ideal game to start off with as there are only four actions; DO NOTHING, FIRE, (MOVE) RIGHT, (MOVE) LEFT. If we apply another "trick" such as making the rendering black-white and cropping the top off, we can further allow the agent to learn/focus upon precise paddle movement. 
 
-![dqn-graph](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/dqn-breakout.png)
+![dqn-graph](https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/pngs/dqn-breakout.png)
 
 The original paper denotes one epoch as 50000 minibatch weights updates or roughly 30 minutes of training time and achieves around 150 score after 50 epoches although scores vary drastically. For my graph above, one epoch is representative of one game (5 lives and roughly 500 steps to start off) and is much shorter than an epoch described in the paper. For adventurous individuals who intend to give this topic their own shot, be warned that I spent over ten hours in training on a GPU. 
 
 
 Below is a similar graph for DDQN. Notice that after around 1600 episodes, the DDQN score is over twice that of the DQN graph and still on an upwards trajectory. 
 
-![ddqn-graph](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/ddqn-breakout.png)
+![ddqn-graph](https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/pngs/ddqn-breakout.png)
 
 Here is a short demonstration of a sample game from the DDQN agent after 1600 episodes. We will observe that the agent begins to show some understanding of the game and is able to move the paddle to hit the ball upwards.
 
-![ddqn-gif](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/breakout-ddqn-gif.gif)
+![ddqn-gif](https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/pngs/breakout-ddqn-gif.gif)
 
 
 Below is another harder game from the ALE system. The [Phoenix](https://www.gymlibrary.dev/environments/atari/phoenix/) game allows for 8 total actions and the environment introduces more variables such as enemies moving and shooting projectiles. One of the benefits of training on Breakout is that the bricks at the top stay relatively consistent. Learning a game like Phoenix forces the agent to truly understand what is going on between each input image and interpret a correct action to undertake.
-![phoenix-gif](https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/pngs/phoenix-gif.gif)
+![phoenix-gif](https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/pngs/phoenix-gif.gif)
 
 
 

@@ -46,12 +46,12 @@ For further investigations I will take a dive into reports for other large citie
 The original data is taken from https://data.gov/ but I've done some editting and here are the versions I am using
 
 <div class="left">
-{% include elements/button.html link="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/datasets/nyc_data.csv" text="NYC Data" %}
-{% include elements/button.html link="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/datasets/chicago_data.csv" text="Chicago Data" %}
-{% include elements/button.html link="https://raw.githubusercontent.com/drinkingtea2223/drinkingtea2223.github.io/main/assets/datasets/la_data.csv" text="LA Data" %}
+{% include elements/button.html link="https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/datasets/nyc_data.csv" text="NYC Data" %}
+{% include elements/button.html link="https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/datasets/chicago_data.csv" text="Chicago Data" %}
+{% include elements/button.html link="https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/datasets/la_data.csv" text="LA Data" %}
 </div>
 
 <div class="right">
-{% include elements/button.html link="https://github.com/drinkingtea2223/drinkingtea2223.github.io/blob/main/python_notebooks/p3.ipynb" text="The Analysis" %}
+{% include elements/button.html link="https://github.com/lexeme78557/lexeme78557.github.io/blob/main/python_notebooks/p3.ipynb" text="The Analysis" %}
 </div>
 
