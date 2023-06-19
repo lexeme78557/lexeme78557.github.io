@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<!--
+  portfolYOU Jekyll theme by Youssef Raafat
+  Free for personal and commercial use under the MIT license
+  https://github.com/YoussefRaafatNasry/portfolYOU
+-->
+
+<html lang="en" class="h-100">
+
+<head>
+
+  
+  
+  
+
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="RNA Structure Prediction">
+  <meta property="og:description" content="A quick introduction and visualization of the Nussinov Algorithm for predicting structure.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/pngs/headshot.jpg">
+
+  <title>RNA Structure Prediction</title>
+  <meta name="description" content="A quick introduction and visualization of the Nussinov Algorithm for predicting structure.">
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+
+  <!-- Theme style -->
+  <script src="/assets/js/theme.js"></script>
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.0/css/all.css">
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+
+  <!-- Animate CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+
+<body class="h-100 d-flex flex-column">
+
+  <main class="flex-shrink-0 container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-themed">
+
+  <a class="navbar-brand" href="/"><h5><b>Dylan Han</b></h5></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-1x fa-bars text-themed"></i>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto"><a class="nav-item nav-link " href="/projects/">Visualizations</a>
+
+      <a class="nav-item nav-link active" href="/blog/">Blog</a>
+
+      <a class="nav-item nav-link " href="/about/">About</a>
+
+      
+
+      <span id="theme-toggler" class="nav-item nav-link" role="button" onclick="toggleTheme()"></span>
+    </div>
+  </div>
+
+</nav>
+    <div class="col-lg-10 mx-auto mt-5 markdown-body">
+  <h1><b>RNA Structure Prediction</b></h1>
+
+<p class="post-metadata text-muted">
+  16 June 2023 -  
+  <b>3 mins read time</b>
+
+  <br>Tags: 
+    
+    <a class="text-decoration-none no-underline" href="/blog/tags#nussinov">
+      <span class="tag badge badge-pill text-primary border border-primary">Nussinov</span>
+    </a>
+    
+    <a class="text-decoration-none no-underline" href="/blog/tags#biology">
+      <span class="tag badge badge-pill text-primary border border-primary">Biology</span>
+    </a>
+    </p>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+        <title>Current Time</title>
+
+        <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+        <script defer="" src="https://pyscript.net/latest/pyscript.js"></script>
+
+    </head>
+    <body>	
+		<div id="rna_sequence"></div>
+		<div id="bracket_solution"></div>
+
+		<div id="matplotlib-plot"> </div>
+		<input type="text" placeholder="AUAUCG " id="seq-input" />
+
+		
+<py-config>
+    packages = ["numpy", "matplotlib"]
+	terminal = false
+</py-config>
+        <py-script output="matplotlib-plot">
+	
+def full_nussinov():
+	def build_matrix(seq):
+		m = len(seq)
+		D = np.empty((m, m))
+		D.fill(np.NAN)
+		for i in range(m):
+			for j in range(i+1):
+				D[i][j] = 0 
+		return D
+
+
+	def nussinov(seq, pairs, hairpin):
+		#dp_table = build_matrix(seq)
+		m = len(seq)
+		dp_table = np.zeros((m, m))
+		for h in range(1 + hairpin, m):
+			for i in range(m - h):
+				j = i + h
+				opt = -1
+				# case 1: if matches
+				if (seq[i], seq[j]) in pairs:
+					curr_opt = dp_table[i+1][j-1] + 1
+					if curr_opt &gt; opt:
+						opt = curr_opt
+				# case 2: skip head
+				curr_opt = dp_table[i+1][j]
+				if curr_opt &gt; opt:
+					opt = curr_opt
+				# case 3: skip tail
+				curr_opt = dp_table[i][j-1]
+				if curr_opt &gt; opt:
+					opt = curr_opt
+				# case 4: bifurcation
+				for k in range(i+1+hairpin, j):
+					curr_opt = dp_table[i][k] + dp_table[k+1][j]
+					if curr_opt &gt; opt:
+						opt = curr_opt
+				dp_table[i][j] = opt
+
+		start = dp_table[0][-1]
+		return start, dp_table
+
+	def traceback(seq, dp_table, hairpin):
+		n = len(seq)
+		stack = [(0,n-1)]
+		pairs = []
+		while len(stack) &gt; 0:
+			i,j = stack.pop()
+			if i + hairpin &gt;= j:
+				continue
+			elif dp_table[i+1][j] == dp_table[i][j]:
+				stack.append((i+1, j))
+			elif dp_table[i][j-1] == dp_table[i][j]:
+				stack.append((i, j-1))
+			elif dp_table[i+1][j-1] +1 == dp_table[i][j]:
+				pairs.append((i, j))
+				stack.append((i+1, j-1))
+			else:
+				for k in range(i+1, j):
+					if dp_table[i][k] + dp_table[k+1][j] == dp_table[i][j]:
+						stack.append((k+1, j))
+						stack.append((i, k))
+						break
+		return pairs
+
+	def bracket_conversion(seq, pairs):
+		notation = ['-' for c in seq]
+		for (i, j) in pairs:
+			notation[i] = '('
+			notation[j] = ')'
+		return ''.join(notation)
+
+	def visualize_reconstruction(seq, table, record, hairpin):
+		'''
+			Creating backtrace from the given DP table and reconstruction
+
+			Reference for plotting:
+				https://matplotlib.org/3.1.1/gallery/images_contours_and_fields/image_annotated_heatmap.html
+		'''
+		import matplotlib
+		import matplotlib.pyplot as plt
+		import numpy as np
+
+		pairs = set(record)
+		left_p = set([r[0] for r in record])
+		right_p = set([r[1] for r in record])
+		n = len(seq)
+		visited = np.zeros((n, n))
+		arrows = [] # quadruples of (x, y, dx, dy)
+		v_mark = 1
+
+		stack = [(0,n-1)]
+		visited[0, n-1] = v_mark
+		while len(stack) &gt; 0:
+			v_mark += 1
+			i,j = stack.pop()
+			if i + hairpin &gt;= j:
+				continue
+			elif (i, j) in pairs:
+				# arrow to (i+1, j-1)
+				arrows.append((i, j, 1, -1))
+				visited[i+1, j-1] = v_mark
+				stack.append((i+1, j-1))
+			elif i in left_p and j in right_p:
+				for k in range(i+1 + hairpin, j):
+					if (i, k) in pairs:
+						# draw arrow to (i, k)
+						arrows.append((i, j, 0, k-j))
+						visited[i, k] = v_mark
+						stack.append((i, k))
+						# arrow to (k+1, j)
+						arrows.append((i, j, k+1-i, 0))
+						visited[k+1, j] = v_mark
+						stack.append((k+1, j))
+						break
+			elif i in left_p:
+				# arrow to (i, j-1)
+				arrows.append((i, j, 0, -1))
+				visited[i, j-1] = v_mark
+				stack.append((i, j-1))
+			else:
+				# arrow to (i+1, j)
+				arrows.append((i, j, 1, 0))
+				visited[i+1, j] = v_mark
+				stack.append((i+1, j))
+
+		rep = bracket_conversion(seq, record)
+		fig = plt.figure(figsize =(5, 5))
+		ax = plt.gca()
+		# revert the color for visited entries
+		visited[visited &gt; 0] = visited.max() + 1 - visited[visited&gt;0]
+		im = ax.imshow(visited, cmap='GnBu')
+		threshold = im.norm(im.get_array().max())/2.
+		table = np.array(table)
+		ax.set_xticks(np.arange(n))
+		ax.set_xticklabels([rep[i] + '\n' + seq[i] for i in range(n)])
+		ax.set_yticks(np.arange(n))
+		ax.set_yticklabels([seq[i] for i in range(n)])
+		ax.tick_params(top=True, bottom=False, labeltop=True, labelbottom=False)
+		plt.setp(ax.get_xticklabels(), rotation=0, ha="right",
+				 rotation_mode="anchor")
+		# Turn spines off and create white grid.
+		for edge, spine in ax.spines.items():
+			spine.set_visible(False)
+		ax.set_xticks(np.arange(n+1)-.5, minor=True)
+		ax.set_yticks(np.arange(n+1)-.5, minor=True)
+		ax.grid(which="minor", color="w", linestyle='-', linewidth=3, zorder=0)
+		ax.tick_params(which="minor", bottom=False, left=False)
+
+		for i in range(n):
+			for j in range(n):
+				text = ax.text(j, i, table[i, j],
+							   ha='center', va='center',
+							   color='w' if im.norm(visited[i, j])&gt;threshold else 'black')
+
+		for (x, y, dx, dy) in arrows:
+			if dy &gt; 0:
+				dy -= 0.5
+			elif dy &lt; 0:
+				dy += 0.5
+			if dx &gt; 0:
+				dx -= 0.5
+			elif dx &lt; 0:
+				dx += 0.5
+			ax.arrow(y, x, dy, dx, width=0.01, head_width=0.2, alpha=0.5,
+					 color='r', zorder=2)
+
+		display(plt, target="matplotlib-plot", append=False)
+		plt.close()
+		return 
+
+	import numpy as np
+	import matplotlib.pyplot as plt	
+	from pyscript import Element
+
+	tuple_set = set([('A', 'U'), ('U', 'A'), ('C', 'G'), ('G', 'C'), ('G', 'U'), ('U', 'G')])
+	hairpin = 0
+
+	rna_seq = Element('seq-input').element.value
+	ans, dp_table = nussinov(rna_seq, tuple_set, hairpin)
+	connected_pairs = traceback(rna_seq, dp_table, hairpin)
+	solution = bracket_conversion(rna_seq, connected_pairs)
+	display(rna_seq, target="rna_sequence", append=False)
+	display(solution, target="bracket_solution", append=False)
+	visualize_reconstruction(rna_seq, dp_table, connected_pairs, hairpin)
+
+        
+        </py-script>
+		<button type="submit" id="run-nussinov-button" py-onclick="full_nussinov()">Get Nussinov Structure</button>
+
+    </body>
+</html>
+
+
+
+</div>
+  </main>
+  <footer class="mt-auto py-3 text-center">
+
+  <small class="text-muted mb-2">
+    <i class="fas fa-code"></i> with <i class="fas fa-heart"></i>
+    by <strong>Dylan Han</strong>
+  </small>
+
+  <div class="container-fluid justify-content-center"><a class="social mx-1"  href="mailto:dhan78557@gmail.com"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#db4437'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fas fa-envelope fa-1x"></i>
+    </a><a class="social mx-1"  href="https://www.github.com/lexeme78557"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#333333'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-github fa-1x"></i>
+    </a>
+
+</div><small id="attribution">
+    theme <a href="https://github.com/YoussefRaafatNasry/portfolYOU">portfolYOU</a>
+  </small>
+
+</footer>
+
+
+
+
+  
+  <!-- GitHub Buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- jQuery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- wow.js CDN & Activation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+<script> new WOW().init(); </script>
+
+<!-- Initialize all tooltips -->
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+</body>
+
+</html>
