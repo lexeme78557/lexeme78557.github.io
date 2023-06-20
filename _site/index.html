@@ -84,15 +84,23 @@
     </div>
 
     <p class="text-muted wow animated slideInUp" data-wow-delay=".15s">Hi! I'm Dylan and I enjoy swimming, playing chess, and reading science-fiction. </p>
+    <p> Check out a <a href="#" id="rand_page" onclick="randomUrl();">random page</a> from this site!</p>
 
     <script>
       var urls = [
-        "https://lexeme78557.github.io/projects/atlas-wordcloud",
+      "https://lexeme78557.github.io/blog/adversarial-attacks",
+      "https://lexeme78557.github.io/blog/reinforcement-learning",
+      "https://lexeme78557.github.io/projects/atlas-wordcloud",
         "https://lexeme78557.github.io/blog/adversarial-attacks",
-        "https://lexeme78557.github.io/blog/reinforcement-learning",
-      ]
+        "https://lexeme78557.github.io/blog/reinforcement-learning"
+      ];
+
+      function randomUrl() {
+        var randomNumber = Math.floor(Math.random() * urls.length);
+        var newUrl = urls[randomNumber];
+        document.getElementById("rand_page").href = newUrl;
+      }
     </script>
-    <p> Check out a <a href="#" onclick="randomUrl();">random page</a> from this site!</p>
   </div>
 </div>
 
