@@ -1,4 +1,4 @@
-const STORAGE_KEY = "theme";
+const STORAGE_KEY = "light";
 const THEME_ATTR  = "data-theme";
 const QUERY_KEY   = "(prefers-color-scheme: light)";
 
