@@ -8,14 +8,13 @@
   level: Expert
   color: Dark Blue
   
-
 - name: Java
   percentage: 90
   level: Expert
   color: Dark Blue
 
 - name: Javascript
-  percentage: 80
+  percentage: 70
   level: Expert
   color: Blue
 
@@ -25,7 +24,7 @@
   color: blue
 
 - name: MySQL
-  percentage: 60
+  percentage: 70
   level: Intermediate
   color: info
 
