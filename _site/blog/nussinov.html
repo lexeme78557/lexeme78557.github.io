@@ -22,11 +22,11 @@
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="RNA Structure Prediction">
-  <meta property="og:description" content="A quick introduction and visualization of the Nussinov Algorithm for predicting structure.">
+  <meta property="og:description" content="A quick introduction and visualization of the Nussinov Algorithm for predicting secondary structure.">
   <meta property="og:image" content="https://raw.githubusercontent.com/lexeme78557/lexeme78557.github.io/main/assets/pngs/headshot.jpg">
 
   <title>RNA Structure Prediction</title>
-  <meta name="description" content="A quick introduction and visualization of the Nussinov Algorithm for predicting structure.">
+  <meta name="description" content="A quick introduction and visualization of the Nussinov Algorithm for predicting secondary structure.">
 
   <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
 
@@ -77,7 +77,7 @@
 
 <p class="post-metadata text-muted">
   16 June 2023 -  
-  <b>3 mins read time</b>
+  <b>5 mins read time</b>
 
   <br>Tags: 
     
@@ -95,7 +95,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-        <title>Current Time</title>
+        <title>Nussinov Structure Prediction</title>
 
         <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
         <script defer="" src="https://pyscript.net/latest/pyscript.js"></script>
@@ -106,8 +106,12 @@
 		<div id="bracket_solution"></div>
 
 		<div id="matplotlib-plot"> </div>
-		<input type="text" placeholder="AUAUCG " id="seq-input" />
-
+		<div> Please type in your sequence </div>
+		<div> *Note: Please limit your inputs to the letters A, C, G, U </div>
+		<input style="height:25px" type="text" placeholder="AUAUCG" id="seq-input" />
+		<div> Please specify the number of <a href="https://en.wikipedia.org/wiki/Stem-loop">hairpin loops</a> </div>
+		<input style="height:25px" type="number" placeholder="1 " id="hairpin-input" />
+		<div> Check for a reconstruction of maximal base pair matching </div>
 		
 <py-config>
     packages = ["numpy", "matplotlib"]
@@ -116,21 +120,16 @@
         <py-script output="matplotlib-plot">
 	
 def full_nussinov():
-	def build_matrix(seq):
+	
+	# construct a dynamic programming table
+	# from the input sequence to be used for backtracking
+	def build_table(seq, pairs, hairpin):
 		m = len(seq)
-		D = np.empty((m, m))
-		D.fill(np.NAN)
-		for i in range(m):
-			for j in range(i+1):
-				D[i][j] = 0 
-		return D
-
-
-	def nussinov(seq, pairs, hairpin):
-		#dp_table = build_matrix(seq)
-		m = len(seq)
+		# initialize empty array 
 		dp_table = np.zeros((m, m))
 		for h in range(1 + hairpin, m):
+			# we only care about upper triangle
+			# there is no need to recurse through zeros in bottom half
 			for i in range(m - h):
 				j = i + h
 				opt = -1
@@ -152,13 +151,16 @@ def full_nussinov():
 					curr_opt = dp_table[i][k] + dp_table[k+1][j]
 					if curr_opt &gt; opt:
 						opt = curr_opt
+						
+				# set table cell equal to best value
 				dp_table[i][j] = opt
+		return dp_table
 
-		start = dp_table[0][-1]
-		return start, dp_table
-
+	# takes in the completed table and traces from the top-right
+	# until it reaches the top-left to bottom-right boundary diagonal
 	def traceback(seq, dp_table, hairpin):
 		n = len(seq)
+		# intial starting point from the top-right
 		stack = [(0,n-1)]
 		pairs = []
 		while len(stack) &gt; 0:
@@ -180,6 +182,8 @@ def full_nussinov():
 						break
 		return pairs
 
+	# bracket notation 
+	# using dashes instead of periods for easier visual distinguishing 
 	def bracket_conversion(seq, pairs):
 		notation = ['-' for c in seq]
 		for (i, j) in pairs:
@@ -291,10 +295,20 @@ def full_nussinov():
 	from pyscript import Element
 
 	tuple_set = set([('A', 'U'), ('U', 'A'), ('C', 'G'), ('G', 'C'), ('G', 'U'), ('U', 'G')])
-	hairpin = 0
-
+	
+	hairpin_input = Element('hairpin-input').element.value
+	
+	if (len(hairpin_input) == 0):
+		hairpin = 0
+	else:
+		hairpin = int(hairpin_input)
 	rna_seq = Element('seq-input').element.value
-	ans, dp_table = nussinov(rna_seq, tuple_set, hairpin)
+	
+	if (len(rna_seq) == 0):
+		rna_seq = 'AUAUCG'
+	rna_seq = rna_seq.upper()
+	
+	dp_table = build_table(rna_seq, tuple_set, hairpin)
 	connected_pairs = traceback(rna_seq, dp_table, hairpin)
 	solution = bracket_conversion(rna_seq, connected_pairs)
 	display(rna_seq, target="rna_sequence", append=False)
@@ -307,6 +321,11 @@ def full_nussinov():
 
     </body>
 </html>
+
+<h2 id="motivations">Motivations</h2>
+<p>As we seek to uncover how protiens fold in the tertiary and quarternary structure, we must first look into how the structure appears in the two-dimensions. Nussinov algorithm is a technique which maximizes the number of base pair matchings. This is a rather naive method of generating a secondary structure, but is motivated by the belief that more matchings is indicative of stronger structural stability. While the results are often not biologically relevant, Nussinov provides a first step into looking at how simple dynamic programming algorithms can be extended for other methods such as energy minimization for structural prediction.</p>
+
+<p>Note: PyScript (Python) is slow, give the page a couple seconds to load properly</p>
 
 
 
